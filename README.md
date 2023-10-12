@@ -2,6 +2,10 @@
  
 Teste técnico para desenvolvimento frontend – React/NextJS.
 
+## Deploy
+
+Acesse em https://pokecenter-petz.vercel.app/
+
 ## Setup
 
 Instale as dependências do código com seu gerenciador de pacotes favorito.
