@@ -1,0 +1,67 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.btn {
+  @apply rounded-full py-3 bg-primary-500 hover:bg-primary-600 transition ease-in-out duration-300 text-white font-bold text-sm;
+}
+
+.btnAnimated {
+  width: 70px;
+  overflow: hidden;
+  position: relative;
+  transition: width 1s;
+}
+
+.logo {
+  width: 37px;
+  height: 34px;
+}
+
+.btnAnimated span {
+  width: 0;
+  visibility: hidden;
+  white-space: nowrap;
+  transition: width 0.5s, visibility 0.5s;
+}
+
+.btnAnimated:hover {
+  @media (min-width: 580px) {
+    width: 260px;
+  }
+}
+
+.btnAnimated:hover span {
+  width: auto;
+  visibility: visible;
+}
+
+.btnAnimated-initial {
+  width: 70px;
+  @media (min-width: 580px) {
+    width: 260px;
+    visibility: visible;
+  }
+}
+
+.btnAnimated-initial span {
+  width: 0;
+  visibility: hidden;
+  white-space: nowrap;
+  transition: width 0.5s, visibility 0.5s;
+  @media (min-width: 580px) {
+    visibility: visible;
+  }
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
