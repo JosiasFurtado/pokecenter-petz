@@ -1,6 +1,6 @@
 import React from 'react'
 import Select from '../Select'
-import { UseFormRegister, UseFormSetValue } from 'react-hook-form'
+import { UseFormSetValue } from 'react-hook-form'
 import { FormInputs } from '@/pages/agendar-consulta'
 import { useAllPokemons } from '@/hooks/useAllPokemons'
 

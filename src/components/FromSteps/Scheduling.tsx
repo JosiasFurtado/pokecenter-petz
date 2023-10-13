@@ -33,7 +33,9 @@ export const Scheduling: React.FC<Props> = ({ register, selectedDate }) => {
   useEffect(() => {
     if (selectedDate) {
       fetchTimes()
+      return
     }
+    setTimes(null)
   }, [fetchTimes, selectedDate])
 
   const disabledTimeSelect = !times || times.length === 0
@@ -43,7 +45,7 @@ export const Scheduling: React.FC<Props> = ({ register, selectedDate }) => {
       <Select
         label="Data para Atendimento"
         placeholder="Selecione uma data"
-        {...register('date')}
+        {...register('date', { required: true })}
       >
         {dates?.map((date) => (
           <option key={date} value={date}>
@@ -58,7 +60,7 @@ export const Scheduling: React.FC<Props> = ({ register, selectedDate }) => {
         placeholder={
           disabledTimeSelect ? 'Selecione uma data' : 'Selecione um horário'
         }
-        {...register('time')}
+        {...register('time', { required: true })}
       >
         {times?.map((time) => (
           <option key={time} value={time}>

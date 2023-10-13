@@ -33,10 +33,16 @@ export const SchedulingPage: React.FC = () => {
     { status: 'success' | 'error'; data: FormInputs } | undefined
   >(undefined)
 
-  const { register, handleSubmit, watch, setValue, reset } =
-    useForm<FormInputs>({
-      defaultValues,
-    })
+  const {
+    register,
+    handleSubmit,
+    watch,
+    setValue,
+    reset,
+    formState: { isValid },
+  } = useForm<FormInputs>({
+    defaultValues,
+  })
 
   const pokemonList = watch('pokemonList')
   const selectedRegion = watch('region')
@@ -44,27 +50,15 @@ export const SchedulingPage: React.FC = () => {
 
   const onSubmit: SubmitHandler<FormInputs> = (data) => {
     event?.preventDefault()
-    const { name, time, city, pokemonList } = data
-    if (
-      name === '' ||
-      time === '' ||
-      city === '' ||
-      pokemonList[0].name === ''
-    ) {
-      setFormFeedback({ status: 'error', data })
-      return
-    }
     setFormFeedback({ status: 'success', data })
   }
 
-  const handleResetForm = (onlyResetFeedback?: boolean) => {
-    if (onlyResetFeedback) {
-      setFormFeedback(undefined)
-      return
-    }
+  const handleResetForm = () => {
     reset()
     setFormFeedback(undefined)
   }
+
+  const disableSubmit = !isValid || pokemonList[0].name === ''
 
   return (
     <Layout templateTitle="Agendar Consulta">
@@ -92,7 +86,10 @@ export const SchedulingPage: React.FC = () => {
                 />
                 <PokemonList setValue={setValue} pokemonList={pokemonList} />
                 <Scheduling register={register} selectedDate={selectedDate} />
-                <Checkout pokemonList={pokemonList} />
+                <Checkout
+                  pokemonList={pokemonList}
+                  disableSubmit={disableSubmit}
+                />
               </form>
             </div>
           )}

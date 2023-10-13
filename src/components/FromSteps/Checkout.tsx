@@ -5,8 +5,9 @@ import PrimaryButton from '../PrimaryButton'
 
 interface Props {
   pokemonList: Pokemon[]
+  disableSubmit: boolean
 }
-export const Checkout: React.FC<Props> = ({ pokemonList }) => {
+export const Checkout: React.FC<Props> = ({ pokemonList, disableSubmit }) => {
   const values = useMemo(() => {
     const numberOfPokemons = pokemonList.length
     const generationNumbers = pokemonList.map((item) => item.generation)
@@ -52,7 +53,11 @@ export const Checkout: React.FC<Props> = ({ pokemonList }) => {
         <strong className="text-2xl font-semibold">
           Valor Total: {formatMoney(values.total)}
         </strong>
-        <PrimaryButton label="Concluir Agendamento" type="submit" />
+        <PrimaryButton
+          label="Concluir Agendamento"
+          type="submit"
+          disabled={disableSubmit}
+        />
       </div>
     </div>
   )

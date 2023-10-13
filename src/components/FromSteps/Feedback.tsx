@@ -7,7 +7,7 @@ import { formatHour } from '@/utils/string'
 interface Props {
   status: 'success' | 'error'
   data: FormInputs
-  handleResetForm: (onlyResetFeedback?: boolean) => void
+  handleResetForm: () => void
 }
 
 export const Feedback: React.FC<Props> = ({
@@ -50,7 +50,7 @@ export const Feedback: React.FC<Props> = ({
       <p className="mb-5 text-sm text-gray-600 text-center">{message}</p>
       <PrimaryButton
         label="Fazer Novo Agendamento"
-        onClick={() => (isSuccess ? handleResetForm() : handleResetForm(true))}
+        onClick={() => handleResetForm()}
         type="button"
       />
     </div>

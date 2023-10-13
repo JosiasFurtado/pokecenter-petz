@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 .btn {
-  @apply rounded-full py-3 bg-primary-500 hover:bg-primary-600 transition ease-in-out duration-300 text-white font-bold text-sm;
+  @apply rounded-full py-3 disabled:bg-primary-400 bg-primary-500 hover:bg-primary-600 transition ease-in-out duration-300 text-white font-bold text-sm;
 }
 
 .btnAnimated {

@@ -48,24 +48,30 @@ export const NameAndRegion: React.FC<Props> = ({
   useEffect(() => {
     if (selectedRegion) {
       fetchCities()
+      return
     }
+    setCities(null)
   }, [fetchCities, selectedRegion])
 
   const disabledCitiesSelect = !cities || cities.length === 0
 
   return (
     <div className="grid grid-cols-2 gap-4 mb-10">
-      <Input label="Nome" placeholder="Digite seu nome" {...register('name')} />
+      <Input
+        label="Nome"
+        placeholder="Digite seu nome"
+        {...register('name', { required: true })}
+      />
       <Input
         label="Sobrenome"
         placeholder="Digite seu sobrenome"
-        {...register('lastName')}
+        {...register('lastName', { required: true })}
       />
 
       <Select
         label="Região"
         placeholder="Selecione sua região"
-        {...register('region')}
+        {...register('region', { required: true })}
       >
         {regions?.map((region) => (
           <option key={region.name} value={region.name}>
@@ -80,7 +86,7 @@ export const NameAndRegion: React.FC<Props> = ({
         placeholder={
           disabledCitiesSelect ? 'Não há cidades :(' : 'Selecione sua cidade'
         }
-        {...register('city')}
+        {...register('city', { required: true })}
       >
         {cities?.map((city) => (
           <option key={city.name} value={city.name}>
